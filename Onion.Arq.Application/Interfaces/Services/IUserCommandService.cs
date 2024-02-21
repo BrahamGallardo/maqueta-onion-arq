@@ -2,8 +2,8 @@
 
 namespace Onion.Arq.Application.Interfaces.Services
 {
-    public interface IUserAsyncService
+    public interface IUserCommandService
     {
-        Task<UserDto> GetByEmailAsync(string email);
+        Task<UserDto> CreateUserAsync(UserDto userDto);
     }
 }

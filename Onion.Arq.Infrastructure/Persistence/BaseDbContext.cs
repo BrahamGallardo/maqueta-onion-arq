@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using Onion.Arq.Application.Common.Helpers;
 
 namespace Onion.Arq.Infrastructure.Persistence
 {
@@ -32,9 +33,11 @@ namespace Onion.Arq.Infrastructure.Persistence
                     case EntityState.Deleted:
                         break;
                     case EntityState.Modified:
+                        entry.Entity.UpdatedDate = ServerTime.GetServerTimeCST();
+                        entry.Entity.UpdatedBy = GetCurrentUserId();
                         break;
                     case EntityState.Added:
-                        entry.Entity.CreatedDate = DateTime.UtcNow;
+                        entry.Entity.CreatedDate = ServerTime.GetServerTimeCST();
                         entry.Entity.CreatedBy = GetCurrentUserId();
                         entry.Entity.Activated = true;
                         break;

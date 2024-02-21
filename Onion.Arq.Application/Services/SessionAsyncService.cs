@@ -13,15 +13,11 @@ namespace Onion.Arq.Application.Services
 {
     public class SessionAsyncService : ISessionAsyncService
     {
-        private readonly IRepositoryAsyncArdalis<Session> _repo;
-        private readonly IMapper _mapper;
-        private readonly IUserAsyncService _userService;
+        private readonly IUserQueryService _userService;
         private readonly IConfiguration _conf;
 
-        public SessionAsyncService(IRepositoryAsyncArdalis<Session> repo, IMapper mapper, IUserAsyncService userService, IConfiguration conf)
+        public SessionAsyncService(IUserQueryService userService, IConfiguration conf)
         {
-            _mapper = mapper;
-            _repo = repo;
             _userService = userService;
             _conf = conf;
         }

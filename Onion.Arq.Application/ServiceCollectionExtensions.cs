@@ -9,12 +9,13 @@ namespace Onion.Arq.Application
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddApplicationService(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApplicationService(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
             services.AddScoped<ISessionAsyncService, SessionAsyncService>();
-            services.AddScoped<IUserAsyncService, UserAsyncService>();
+            services.AddScoped<IUserQueryService, UserQueryService>();
+            services.AddScoped<IUserCommandService, UserCommandService>();
 
             return services;
         }

@@ -27,7 +27,7 @@ builder.Services.AddHttpContextAccessor();
 
 //ADDING INFRASTRUCTURE LAYER
 builder.Services.AddInfrastructureService(builder.Configuration);
-builder.Services.AddApplicationService(builder.Configuration);
+builder.Services.AddApplicationService();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

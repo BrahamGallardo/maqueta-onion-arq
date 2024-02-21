@@ -1,29 +1,29 @@
 ﻿using AutoMapper;
 using Onion.Arq.Application.Common.Exceptions;
 using Onion.Arq.Application.Common.Specifications.UserSpec;
-using Onion.Arq.Application.Interfaces;
+using Onion.Arq.Application.Interfaces.Repository;
 using Onion.Arq.Application.Interfaces.Services;
 using Onion.Arq.Application.Models;
 using Onion.Arq.Domain.Entities;
 
 namespace Onion.Arq.Application.Services.UserService
 {
-    public class UserAsyncService : IUserAsyncService
+    public class UserQueryService : IUserQueryService
     {
-        private readonly IRepositoryAsyncArdalis<User> _repo;
         private readonly IMapper _mapper;
+        private readonly IRepositoryQueryAsync<User> _repoQuery;
 
-        public UserAsyncService(IRepositoryAsyncArdalis<User> repo, IMapper mapper)
+        public UserQueryService(IMapper mapper, IRepositoryQueryAsync<User> repoQuery)
         {
-            _repo = repo;
             _mapper = mapper;
+            _repoQuery = repoQuery;
         }
 
         public async Task<UserDto> GetByEmailAsync(string email)
         {
             try
             {
-                List<User> users = await _repo.ListAsync(new GetByEmailSpecification(email));
+                List<User> users = await _repoQuery.ListAsync(new GetByEmailSpec(email));
                 if (users.FirstOrDefault() == null)
                 {
                     throw new NotFoundException("User", email);
@@ -37,5 +37,6 @@ namespace Onion.Arq.Application.Services.UserService
                 throw ex;
             }
         }
+
     }
 }
