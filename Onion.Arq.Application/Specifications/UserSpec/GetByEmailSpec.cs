@@ -3,8 +3,7 @@ using Onion.Arq.Domain.Entities;
 
 namespace Onion.Arq.Application.Specifications.UserSpec
 {
-    public class GetByEmailSpec : BaseSpecification<User>
+    public class GetByEmailSpec(string email) : BaseSpecification<User>(x => x.Email == email)
     {
-        public GetByEmailSpec(string email) : base(x => x.Email == email) { }
     }
 }

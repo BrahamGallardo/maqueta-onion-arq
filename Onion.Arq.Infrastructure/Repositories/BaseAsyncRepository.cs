@@ -3,12 +3,11 @@ using Onion.Arq.Application.Interfaces.Repository;
 
 namespace Onion.Arq.Infrastructure.Repositories
 {
-    public abstract class BaseAsyncRepository<E> : IBaseAsyncRepository
+    public abstract class BaseAsyncRepository<E>(DbContext context) : IBaseAsyncRepository
         where E : class
     {
         protected bool _disposed = false;
-        protected readonly DbContext _context;
-        public BaseAsyncRepository(DbContext context) => _context = context;
+        protected readonly DbContext _context = context;
 
         public virtual void Dispose()
         {

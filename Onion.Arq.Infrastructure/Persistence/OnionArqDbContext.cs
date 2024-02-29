@@ -5,11 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Onion.Arq.Infrastructure.Persistence
 {
-    public partial class OnionArqDbContext : BaseDbContext
+    public partial class OnionArqDbContext(DbContextOptions<OnionArqDbContext> options
+            , IHttpContextAccessor context) : BaseDbContext(options, context)
     {
-        public OnionArqDbContext(DbContextOptions<OnionArqDbContext> options
-            , IHttpContextAccessor context) : base(options, context) { }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Role>(ent =>

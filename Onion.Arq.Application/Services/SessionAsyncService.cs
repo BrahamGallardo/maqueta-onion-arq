@@ -8,16 +8,11 @@ using System.Text;
 
 namespace Onion.Arq.Application.Services
 {
-    public class SessionAsyncService : ISessionAsyncService
+    public class SessionAsyncService(IUserQueryService userService, IConfiguration conf) : ISessionAsyncService
     {
-        private readonly IUserQueryService _userService;
-        private readonly IConfiguration _conf;
+        private readonly IUserQueryService _userService = userService;
+        private readonly IConfiguration _conf = conf;
 
-        public SessionAsyncService(IUserQueryService userService, IConfiguration conf)
-        {
-            _userService = userService;
-            _conf = conf;
-        }
         public async Task<SessionDto> GetSessionAsync(string email, string password)
         {
             UserDto userDto = await _userService.GetByEmailAsync(email)

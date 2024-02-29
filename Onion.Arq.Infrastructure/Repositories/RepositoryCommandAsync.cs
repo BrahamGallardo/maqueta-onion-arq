@@ -3,8 +3,7 @@ using Onion.Arq.Infrastructure.Persistence;
 
 namespace Onion.Arq.Infrastructure.Repositories
 {
-    public class RepositoryCommandAsync<E> : BaseCommandAsyncRepo<E>, IRepositoryCommandAsync<E> where E : class
+    public class RepositoryCommandAsync<E>(OnionArqDbContext context) : BaseCommandAsyncRepo<E>(context), IRepositoryCommandAsync<E> where E : class
     {
-        public RepositoryCommandAsync(OnionArqDbContext context) : base(context) { }
     }
 }

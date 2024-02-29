@@ -4,11 +4,9 @@ using Onion.Arq.Application.Interfaces.Repository;
 
 namespace Onion.Arq.Infrastructure.Repositories
 {
-    public class BaseCommandAsyncRepo<E> : BaseAsyncRepository<E>, IBaseCommandAsyncRepo<E>
+    public class BaseCommandAsyncRepo<E>(DbContext context) : BaseAsyncRepository<E>(context), IBaseCommandAsyncRepo<E>
         where E : class
     {
-        public BaseCommandAsyncRepo(DbContext context) : base(context) { }
-
         public virtual async Task<E> CreateAsync(E t)
         {
             try

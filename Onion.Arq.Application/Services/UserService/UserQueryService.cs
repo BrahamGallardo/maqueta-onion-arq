@@ -8,16 +8,10 @@ using Onion.Arq.Domain.Entities;
 
 namespace Onion.Arq.Application.Services.UserService
 {
-    public class UserQueryService : IUserQueryService
+    public class UserQueryService(IMapper mapper, IRepositoryQueryAsync<User> repoQuery) : IUserQueryService
     {
-        private readonly IMapper _mapper;
-        private readonly IRepositoryQueryAsync<User> _repoQuery;
-
-        public UserQueryService(IMapper mapper, IRepositoryQueryAsync<User> repoQuery)
-        {
-            _mapper = mapper;
-            _repoQuery = repoQuery;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IRepositoryQueryAsync<User> _repoQuery = repoQuery;
 
         public async Task<UserDto> GetByEmailAsync(string email)
         {

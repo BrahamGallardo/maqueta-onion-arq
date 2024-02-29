@@ -8,7 +8,7 @@ namespace Onion.Arq.Infrastructure.Persistence
 {
     public abstract class BaseDbContext : DbContext
     {
-        private IHttpContextAccessor _context;
+        private readonly IHttpContextAccessor _context;
 
         public BaseDbContext(DbContextOptions options
             , IHttpContextAccessor context) : base(options)
@@ -24,8 +24,6 @@ namespace Onion.Arq.Infrastructure.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            var entries = ChangeTracker.Entries();
-
             foreach (var entry in ChangeTracker.Entries<BaseEntity>())
             {
                 switch (entry.State)

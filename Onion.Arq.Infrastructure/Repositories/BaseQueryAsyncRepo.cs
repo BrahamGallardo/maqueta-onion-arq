@@ -5,11 +5,9 @@ using Onion.Arq.Application.Interfaces.Repository;
 
 namespace Onion.Arq.Infrastructure.Repositories
 {
-    public class BaseQueryAsyncRepo<E> : BaseAsyncRepository<E>, IBaseQueryAsyncRepo<E> 
+    public class BaseQueryAsyncRepo<E>(DbContext context) : BaseAsyncRepository<E>(context), IBaseQueryAsyncRepo<E> 
         where E : class
     {
-        public BaseQueryAsyncRepo(DbContext context) : base(context) { }
-
         public async Task<E> GetByIdAsync(int id)
         {
             var e = await _context.Set<E>().FindAsync(id);

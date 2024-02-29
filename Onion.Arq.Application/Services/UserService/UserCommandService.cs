@@ -6,15 +6,10 @@ using Onion.Arq.Domain.Entities;
 
 namespace Onion.Arq.Application.Services.UserService
 {
-    public class UserCommandService : IUserCommandService
+    public class UserCommandService(IMapper mapper, IRepositoryCommandAsync<User> repoCommand) : IUserCommandService
     {
-        private readonly IMapper _mapper;
-        private readonly IRepositoryCommandAsync<User> _repoCommand;
-        public UserCommandService(IMapper mapper, IRepositoryCommandAsync<User> repoCommand)
-        {
-            _mapper = mapper;
-            _repoCommand = repoCommand;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IRepositoryCommandAsync<User> _repoCommand = repoCommand;
 
         public async Task<UserDto> CreateUserAsync(UserDto userDto)
         {
