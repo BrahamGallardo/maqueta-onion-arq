@@ -1,5 +1,4 @@
 ﻿using Onion.Arq.Application.Common;
-using Onion.Arq.Application.Common.Specifications;
 
 namespace Onion.Arq.Application.Interfaces.Repository
 {

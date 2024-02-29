@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Onion.Arq.Application.Common;
-using Onion.Arq.Application.Common.Specifications;
+using Onion.Arq.Application.Interfaces;
 using Onion.Arq.Application.Interfaces.Repository;
 
 namespace Onion.Arq.Infrastructure.Repositories

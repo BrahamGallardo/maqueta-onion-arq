@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Onion.Arq.Application.Interfaces;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Onion.Arq.Application.Common.Specifications
+namespace Onion.Arq.Application.Specifications
 {
-    public abstract class BaseSpecification<E>: ISpecification<E>
+    public abstract class BaseSpecification<E> : ISpecification<E>
     {
         public BaseSpecification()
         {

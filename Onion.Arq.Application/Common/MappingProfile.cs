@@ -11,11 +11,9 @@ namespace Onion.Arq.Application.Common
 
         private void ApplyMappingsFromAssembly(Assembly assembly)
         {
-            CreateMap<User, UserDto>().ForPath(x => x.Role.Users, opt => opt.Ignore());
-            CreateMap<UserDto, User>().ForPath(x => x.Role.Users, opt => opt.Ignore());
+            CreateMap<User, UserDto>().ForPath(x => x.Role.Users, opt => opt.Ignore()).ReverseMap();
 
-            CreateMap<Role, RoleDto>().ForMember(x => x.Users, opt => opt.Ignore());
-            CreateMap<RoleDto, Role>().ForMember(x => x.Users, opt => opt.Ignore());
+            CreateMap<Role, RoleDto>().ForMember(x => x.Users, opt => opt.Ignore()).ReverseMap();
 
             CreateMap<Session, SessionDto>().ReverseMap();
         }

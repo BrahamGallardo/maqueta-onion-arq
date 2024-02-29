@@ -5,7 +5,6 @@ namespace Onion.Arq.Infrastructure.Repositories
 {
     public class RepositoryQueryAsync<E> : BaseQueryAsyncRepo<E>, IRepositoryQueryAsync<E> where E : class
     {
-        private readonly OnionArqDbContext _context;
-        public RepositoryQueryAsync(OnionArqDbContext context) : base(context) => _context = context;
+        public RepositoryQueryAsync(OnionArqDbContext context) : base(context) { }
     }
 }

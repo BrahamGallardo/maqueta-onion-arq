@@ -1,10 +1,7 @@
-﻿using AutoMapper;
-using Onion.Arq.Application.Interfaces;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using Onion.Arq.Application.Interfaces.Services;
 using Onion.Arq.Application.Models;
-using Onion.Arq.Domain.Entities;
-using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -70,7 +67,7 @@ namespace Onion.Arq.Application.Services
                     claims: _Claims,
                     notBefore: DateTime.UtcNow,
                     // Exipra a la 24 horas.
-                    expires: DateTime.UtcNow.AddMinutes(Convert.ToInt32(_conf["JWT:Timeout"]))
+                    expires: DateTime.UtcNow.AddSeconds(Convert.ToInt32(_conf["JWT:Timeout"]))
                 );
 
             // Generating the token 

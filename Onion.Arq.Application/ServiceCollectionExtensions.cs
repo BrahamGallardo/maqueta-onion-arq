@@ -1,9 +1,8 @@
-﻿using Onion.Arq.Application.Common;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Onion.Arq.Application.Common;
 using Onion.Arq.Application.Interfaces.Services;
 using Onion.Arq.Application.Services;
 using Onion.Arq.Application.Services.UserService;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Onion.Arq.Application
 {

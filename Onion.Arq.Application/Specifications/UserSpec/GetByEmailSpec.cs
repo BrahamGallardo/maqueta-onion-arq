@@ -1,6 +1,7 @@
-﻿using Onion.Arq.Domain.Entities;
+﻿using Onion.Arq.Application.Specifications;
+using Onion.Arq.Domain.Entities;
 
-namespace Onion.Arq.Application.Common.Specifications.UserSpec
+namespace Onion.Arq.Application.Specifications.UserSpec
 {
     public class GetByEmailSpec : BaseSpecification<User>
     {

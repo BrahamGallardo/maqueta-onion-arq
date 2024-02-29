@@ -5,6 +5,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Onion.Arq.Application;
 using Onion.Arq.Infrastructure;
+using Onion.Arq.API.Extensions;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddControllers().AddNewtonsoftJson();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddCustomSwagger();
 
 var cnn = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<OnionArqDbContext>(options =>
@@ -59,11 +61,12 @@ builder.Services.AddCors(options => {
     });
 });
 
+var swaggerConfig = builder.Configuration.GetSection(nameof(SwaggerConfiguration)).Get<SwaggerConfiguration>();
+swaggerConfig.BuildVersion = builder.GetType().Assembly.GetName().Version.ToString();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseCustomSwagger(swaggerConfig);
 
 app.UseHttpsRedirection();
 app.UseRouting();
@@ -74,7 +77,9 @@ app.UseCors("todos");
 app.UseAuthentication();
 app.UseAuthorization();
 
-
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});
 
 app.Run();

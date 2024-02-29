@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using Onion.Arq.Application.Common.Exceptions;
-using Onion.Arq.Application.Common.Specifications.UserSpec;
 using Onion.Arq.Application.Interfaces.Repository;
 using Onion.Arq.Application.Interfaces.Services;
 using Onion.Arq.Application.Models;
+using Onion.Arq.Application.Specifications.UserSpec;
 using Onion.Arq.Domain.Entities;
 
 namespace Onion.Arq.Application.Services.UserService

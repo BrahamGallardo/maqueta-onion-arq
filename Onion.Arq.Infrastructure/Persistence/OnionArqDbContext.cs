@@ -5,20 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Onion.Arq.Infrastructure.Persistence
 {
-    public partial class OnionArqDbContext : BaseDbContext, IOnionArqDbContext
+    public partial class OnionArqDbContext : BaseDbContext
     {
-        private IHttpContextAccessor _context;
         public OnionArqDbContext(DbContextOptions<OnionArqDbContext> options
-            , IHttpContextAccessor context) : base(options, context)
-        {
-            _context = context;
-        }
-
-        #region Set Entities
-        public virtual DbSet<User> Users { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
-        public virtual DbSet<Session> Sessions { get; set; }
-        #endregion
+            , IHttpContextAccessor context) : base(options, context) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

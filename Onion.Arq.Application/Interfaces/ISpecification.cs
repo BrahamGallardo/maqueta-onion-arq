@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Onion.Arq.Application.Common.Specifications
+namespace Onion.Arq.Application.Interfaces
 {
     public interface ISpecification<E>
     {
